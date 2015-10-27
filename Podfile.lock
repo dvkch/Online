@@ -1,0 +1,10 @@
+PODS:
+  - SYProxy (1.0.0)
+
+DEPENDENCIES:
+  - SYProxy
+
+SPEC CHECKSUMS:
+  SYProxy: d30777e2cc79410b5ca113c8ae8323fcff5925e3
+
+COCOAPODS: 0.39.0

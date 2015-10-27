@@ -1,0 +1,127 @@
+//
+//  SYFormViewController.m
+//  Online
+//
+//  Created by Stan Chevallier on 27/10/2015.
+//  Copyright © 2015 Syan. All rights reserved.
+//
+
+#import "SYFormViewController.h"
+#import "SYStorage.h"
+
+@interface SYFormViewController ()
+
+@property (nonatomic, weak) IBOutlet NSTextField *fieldName;
+@property (nonatomic, weak) IBOutlet NSTextField *fieldURL;
+@property (nonatomic, weak) IBOutlet NSTextField *fieldProxyHost;
+@property (nonatomic, weak) IBOutlet NSTextField *fieldProxyPort;
+@property (nonatomic, weak) IBOutlet NSTextField *fieldProxyUser;
+@property (nonatomic, weak) IBOutlet NSTextField *fieldProxyPass;
+@property (nonatomic, weak) IBOutlet NSTextField *fieldTimeout;
+@property (nonatomic, weak) IBOutlet NSTextField *fieldTimeBeforeRetryIfSuccess;
+@property (nonatomic, weak) IBOutlet NSTextField *fieldTimeBeforeRetryIfFailed;
+@property (nonatomic, weak) IBOutlet NSButton *buttonCancel;
+
+@end
+
+@implementation SYFormViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self updateWithWebsite:self.website];
+    
+    if (self.website)
+        [self setTitle:@"Edit website"];
+    else
+        [self setTitle:@"New website"];
+}
+
+- (void)setWebsite:(SYWebsiteModel *)website
+{
+    self->_website = website;
+    [self updateWithWebsite:website];
+}
+
+- (void)updateWithWebsite:(SYWebsiteModel *)website
+{
+    [self.fieldName setStringValue:(self.website.name ?: @"")];
+    [self.fieldURL  setStringValue:(self.website.url  ?: @"")];
+    [self.fieldProxyHost    setStringValue:(self.website.proxy.host ?: @"")];
+    [self.fieldProxyPort    setIntValue:self.website.proxy.port];
+    [self.fieldProxyUser    setStringValue:(self.website.proxy.username ?: @"")];
+    [self.fieldProxyPass    setStringValue:(self.website.proxy.password ?: @"")];
+    [self.fieldTimeout                  setDoubleValue:self.website.timeout];
+    [self.fieldTimeBeforeRetryIfSuccess setDoubleValue:self.website.timeBeforeRetryIfSuccessed];
+    [self.fieldTimeBeforeRetryIfFailed  setDoubleValue:self.website.timeBeforeRetryIfFailed];
+}
+
+- (BOOL)checkValidity
+{
+    NSMutableArray *errors = [NSMutableArray array];
+    if (!self.fieldName.stringValue.length)
+        [errors addObject:@"name must not be empty"];
+    if (!self.fieldURL.stringValue.length)
+        [errors addObject:@"URL must not be empty"];
+    
+    if (!self.fieldProxyHost.stringValue.length && self.fieldProxyPort.integerValue)
+        [errors addObject:@"proxy port is set but not the host"];
+    if (self.fieldProxyHost.stringValue.length && !self.fieldProxyPort.integerValue)
+        [errors addObject:@"proxy port must not be 0 or empty"];
+    if (!self.fieldProxyUser.stringValue.length && self.fieldProxyPass.stringValue.length)
+        [errors addObject:@"proxy username cannot be empty if you provide a password"];
+    if (self.fieldProxyUser.stringValue.length && !self.fieldProxyHost.stringValue.length)
+        [errors addObject:@"proxy user is defined but not the host"];
+    
+    if (self.fieldTimeout.doubleValue < 2)
+        [errors addObject:@"timeout must be greater than 2s"];
+    if (self.fieldTimeBeforeRetryIfSuccess.doubleValue < 2 || self.fieldTimeBeforeRetryIfFailed.doubleValue < 2)
+        [errors addObject:@"time between requests must be greater than 5s"];
+    
+    if (errors.count == 0)
+        return YES;
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:@"Invalid configuration"];
+    
+    NSString *message = [NSString stringWithFormat:@"The following errors have been found:\n- %@", [errors componentsJoinedByString:@"\n- "]];
+    [alert setInformativeText:message];
+    
+    [alert addButtonWithTitle:@"Close"];
+    [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
+    
+    return NO;
+}
+
+- (IBAction)saveButtonTap:(id)sender
+{
+    if (![self checkValidity])
+        return;
+    
+    SYWebsiteModel *website = self.website;
+    if (!website)
+    {
+        website = [[SYWebsiteModel alloc] init];
+        website.proxy = [[SYProxyModel alloc] init];
+    }
+
+    website.name = self.fieldName.stringValue;
+    website.url  = self.fieldURL.stringValue;
+    website.proxy.host              = self.fieldProxyHost.stringValue;
+    website.proxy.port              = self.fieldProxyPort.intValue;
+    website.proxy.username          = self.fieldProxyUser.stringValue;
+    website.proxy.password          = self.fieldProxyPass.stringValue;
+    website.proxy.urlWildcardRules  = @[website.url];
+    website.timeout                     = self.fieldTimeout.doubleValue;
+    website.timeBeforeRetryIfSuccessed  = self.fieldTimeBeforeRetryIfSuccess.doubleValue;
+    website.timeBeforeRetryIfFailed     = self.fieldTimeBeforeRetryIfFailed.doubleValue;
+    
+    [[SYStorage shared] addWebsite:website];
+    [self.view.window close];
+}
+
+- (IBAction)cancelButtonTap:(id)sender
+{
+    [self.view.window close];
+}
+
+@end
