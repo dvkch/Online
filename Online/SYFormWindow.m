@@ -1,15 +1,16 @@
 //
-//  SYFormViewController.m
+//  SYFormWindow.m
 //  Online
 //
 //  Created by Stan Chevallier on 27/10/2015.
 //  Copyright © 2015 Syan. All rights reserved.
 //
 
-#import "SYFormViewController.h"
+#import "SYFormWindow.h"
 #import "SYStorage.h"
+#import "SYIntOnlyFormatter.h"
 
-@interface SYFormViewController ()
+@interface SYFormWindow ()
 
 @property (nonatomic, weak) IBOutlet NSTextField *fieldName;
 @property (nonatomic, weak) IBOutlet NSTextField *fieldURL;
@@ -21,15 +22,43 @@
 @property (nonatomic, weak) IBOutlet NSTextField *fieldTimeBeforeRetryIfSuccess;
 @property (nonatomic, weak) IBOutlet NSTextField *fieldTimeBeforeRetryIfFailed;
 @property (nonatomic, weak) IBOutlet NSButton *buttonCancel;
+@property (nonatomic, weak) IBOutlet NSView *containerView;
 
 @end
 
-@implementation SYFormViewController
+@implementation SYFormWindow
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self updateWithWebsite:self.website];
-    
++ (SYFormWindow *)windowForWebsite:(SYWebsiteModel *)website
+{
+    NSNib *nib = [[NSNib alloc] initWithNibNamed:[[self class] description] bundle:nil];
+    NSArray *items;
+    [nib instantiateWithOwner:nil topLevelObjects:&items];
+    SYFormWindow *window;
+    for (NSObject *item in items)
+    {
+        if ([item isKindOfClass:[self class]])
+            window = (SYFormWindow *)item;
+    }
+    [window setWebsite:website];
+    return window;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self)
+    {
+        [self.fieldProxyPort                setFormatter:[SYIntOnlyFormatter new]];
+        [self.fieldTimeout                  setFormatter:[SYIntOnlyFormatter new]];
+        [self.fieldTimeBeforeRetryIfSuccess setFormatter:[SYIntOnlyFormatter new]];
+        [self.fieldTimeBeforeRetryIfFailed  setFormatter:[SYIntOnlyFormatter new]];
+    }
+    return self;
+}
+
+- (void)update
+{
+    [super update];
     if (self.website)
         [self setTitle:@"Edit website"];
     else
@@ -74,8 +103,10 @@
     
     if (self.fieldTimeout.doubleValue < 2)
         [errors addObject:@"timeout must be greater than 2s"];
-    if (self.fieldTimeBeforeRetryIfSuccess.doubleValue < 2 || self.fieldTimeBeforeRetryIfFailed.doubleValue < 2)
-        [errors addObject:@"time between requests must be greater than 5s"];
+    if (self.fieldTimeBeforeRetryIfSuccess.doubleValue < 5 || self.fieldTimeBeforeRetryIfFailed.doubleValue < 5)
+        [errors addObject:@"time between requests must be greater than or equal to 5s"];
+    if (self.fieldTimeout.intValue % 5 || self.fieldTimeBeforeRetryIfSuccess.intValue % 5 || self.fieldTimeBeforeRetryIfFailed.intValue % 5)
+        [errors addObject:@"times must be multiples of 5"];
     
     if (errors.count == 0)
         return YES;
@@ -87,7 +118,7 @@
     [alert setInformativeText:message];
     
     [alert addButtonWithTitle:@"Close"];
-    [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
+    [alert beginSheetModalForWindow:self completionHandler:nil];
     
     return NO;
 }
@@ -116,12 +147,12 @@
     website.timeBeforeRetryIfFailed     = self.fieldTimeBeforeRetryIfFailed.doubleValue;
     
     [[SYStorage shared] addWebsite:website];
-    [self.view.window close];
+    [self close];
 }
 
 - (IBAction)cancelButtonTap:(id)sender
 {
-    [self.view.window close];
+    [self close];
 }
 
 @end

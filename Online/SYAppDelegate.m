@@ -8,7 +8,7 @@
 
 #import "SYAppDelegate.h"
 #import "SYStorage.h"
-#import "SYFormViewController.h"
+#import "SYFormWindow.h"
 #import "SYCrawler.h"
 
 typedef void(^SYMenuTapBlock)(void);
@@ -89,6 +89,15 @@ typedef void(^SYMenuTapBlock)(void);
     {
         [self.statusItem setImage:self.imageGrey];
     }
+    
+    for (NSMenuItem *item in self.statusItem.menu.itemArray)
+    {
+        if ([item.representedObject isKindOfClass:[NSString class]])
+        {
+            SYCrawlerResult *result = [[SYCrawler shared] resultForWebsite:item.representedObject];
+            [item setImage:[self imageForStatus:result.status]];
+        }
+    }
 }
 
 - (NSImage *)imageForStatus:(SYWebsiteStatus)status
@@ -114,6 +123,7 @@ typedef void(^SYMenuTapBlock)(void);
         
         NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:website.name action:nil keyEquivalent:@""];
         [item setImage:[self imageForStatus:result.status]];
+        [item setRepresentedObject:website.identifier];
         [item setSubmenu:[[NSMenu alloc] init]];
         [menu addItem:item];
         
@@ -133,7 +143,12 @@ typedef void(^SYMenuTapBlock)(void);
         NSMenuItem *itemDelete = [[NSMenuItem alloc] initWithTitle:@"Delete" action:@selector(menuItemTapped:) keyEquivalent:@""];
         [itemDelete setTarget:self];
         [itemDelete setRepresentedObject:^{
-            [[SYStorage shared] removeWebsite:website];
+            NSString *msg = [NSString stringWithFormat:@"Are you sure you want to delete %@ ?", website.name];
+            NSAlert *alert = [NSAlert alertWithMessageText:msg defaultButton:@"No" alternateButton:@"Yes" otherButton:nil informativeTextWithFormat:@"This is operation cannot be undone"];
+            if ([alert runModal] == 0)
+            {
+                [[SYStorage shared] removeWebsite:website];
+            }
         }];
         [item.submenu addItem:itemDelete];
     }
@@ -155,9 +170,9 @@ typedef void(^SYMenuTapBlock)(void);
     [menu addItem:itemQuit];
 }
 
-- (void)menuItemTapped:(id)sender
+- (void)menuItemTapped:(NSMenuItem *)sender
 {
-    SYMenuTapBlock block = [(NSMenuItem *)sender representedObject];
+    SYMenuTapBlock block = sender.representedObject;
     if (block) block();
 }
 
@@ -165,23 +180,14 @@ typedef void(^SYMenuTapBlock)(void);
 
 - (void)openEditViewForWebsite:(SYWebsiteModel *)website
 {
-    SYFormViewController *form = [[SYFormViewController alloc] init];
-    [form setWebsite:website];
+    [self.editWindow close];
     
-    [NSApp activateIgnoringOtherApps:YES];
-    NSWindow *window = [[NSWindow alloc] initWithContentRect:form.view.bounds
-                                                   styleMask:(NSTitledWindowMask|NSClosableWindowMask)
-                                                     backing:NSBackingStoreBuffered
-                                                       defer:NO
-                                                      screen:[NSScreen mainScreen]];
-    [window setContentViewController:form];
-    [window.contentView layoutSubtreeIfNeeded];
-    [window setFrame:(NSRect){{0, 0}, [window.contentView frame].size} display:YES];
-    [window setMovableByWindowBackground:YES];
+    SYFormWindow *window = [SYFormWindow windowForWebsite:website];
     [window center];
     [window setLevel:NSScreenSaverWindowLevel + 1];
     [window setOpaque:YES];
     [window makeKeyAndOrderFront:NSApp];
+    [NSApp activateIgnoringOtherApps:YES];
     
     self.editWindow = window;
 }

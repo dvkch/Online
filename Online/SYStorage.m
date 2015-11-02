@@ -38,11 +38,10 @@
 
 - (void)addWebsite:(SYWebsiteModel *)website
 {
-    BOOL exists = [self.set containsObject:website];
     [self.set addObject:website];
 
-    if (self.websiteAddedBlock && !exists)
-        self.websiteAddedBlock(website);
+    if (self.websitesUpdatedBlock)
+        self.websitesUpdatedBlock();
 
     [self save];
 }

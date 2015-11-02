@@ -11,7 +11,7 @@
 
 @interface SYStorage : NSObject
 
-@property (nonatomic, copy) void(^websiteAddedBlock)(SYWebsiteModel *website);
+@property (nonatomic, copy) void(^websitesUpdatedBlock)(void);
 
 + (SYStorage *)shared;
 

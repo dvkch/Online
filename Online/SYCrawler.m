@@ -11,6 +11,7 @@
 
 @interface SYCrawler ()
 @property (nonatomic, strong) NSMutableDictionary <NSString *, SYCrawlerResult *> *results;
+@property (nonatomic, strong) NSMutableArray *timers;
 @end
 
 @implementation SYCrawler
@@ -31,17 +32,27 @@
     if (self)
     {
         self.results = [NSMutableDictionary dictionary];
-        
-        // start saved items
-        for (SYWebsiteModel *website in [[SYStorage shared] websites])
-            [self updateStatusForWebsiteWithID:website.identifier];
+        self.timers = [NSMutableArray array];
         
         // start new items
-        [[SYStorage shared] setWebsiteAddedBlock:^(SYWebsiteModel *website) {
-            [self updateStatusForWebsiteWithID:website.identifier];
+        [[SYStorage shared] setWebsitesUpdatedBlock:^{
+            [self restartAll];
         }];
+        
+        [self restartAll];
     }
     return self;
+}
+
+- (void)restartAll
+{
+    for (NSTimer *t in self.timers)
+        [t invalidate];
+    
+    self.timers = [NSMutableArray array];
+    
+    for (SYWebsiteModel *website in [[SYStorage shared] websites])
+        [self updateStatusForWebsiteWithID:website.identifier];
 }
 
 - (void)setResultWithStatusCode:(NSInteger)statusCode andError:(NSError *)error forWebsite:(NSString *)websiteID
@@ -70,9 +81,6 @@
 
 - (void)updateStatusForWebsiteWithID:(NSString *)websiteID
 {
-    if ([self.results objectForKey:websiteID])
-        return;
-    
     SYWebsiteModel *website = [[SYStorage shared] websiteForId:websiteID];
     
     // removed from storage
@@ -82,21 +90,38 @@
         return;
     }
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:website.url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
+    {
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:website.url]
+                                                 cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                             timeoutInterval:website.timeout];
         NSHTTPURLResponse *response;
         NSError *error;
         [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
             [self setResultWithStatusCode:response.statusCode andError:error forWebsite:websiteID];
             
-            NSTimeInterval timeBeforeNextUpdate = (response.statusCode == 200) ? website.timeBeforeRetryIfSuccessed : website.timeBeforeRetryIfFailed;
+            NSTimeInterval timeBeforeNextUpdate = ((response.statusCode == 200) ?
+                                                   website.timeBeforeRetryIfSuccessed :
+                                                   website.timeBeforeRetryIfFailed);
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeBeforeNextUpdate * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self updateStatusForWebsiteWithID:websiteID];
-            });
+            NSTimer *t = [NSTimer timerWithTimeInterval:timeBeforeNextUpdate
+                                                 target:self
+                                               selector:@selector(timerTick:)
+                                               userInfo:@{@"websiteID":websiteID}
+                                                repeats:NO];
+            [[NSRunLoop mainRunLoop] addTimer:t forMode:NSRunLoopCommonModes];
+            [self.timers addObject:t];
         });
     });
+}
+
+- (void)timerTick:(NSTimer *)timer
+{
+    [self updateStatusForWebsiteWithID:timer.userInfo[@"websiteID"]];
+    [self.timers removeObject:timer];
+    [timer invalidate];
 }
 
 @end
