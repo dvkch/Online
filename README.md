@@ -9,12 +9,6 @@ Just add an item with name, url, proxy and time settings and wait for the item t
 
 ![Screenshot2](https://raw.githubusercontent.com/dvkch/Online/master/Screenshot2.png "Screenshot2")
 
-### Known issues
-
- - Sometimes when editing an item the app crashes. Don't have time to investigate right know, will do ASAP!
-
- - If you modify an item, you'll have to wait a bit for the status to refresh. Currently the crawler cannot be "restarted".
- 
 ### Downloads
 
 Head up to the [release tab](https://github.com/dvkch/Online/releases)!
