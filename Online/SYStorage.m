@@ -72,10 +72,10 @@
     return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 
-- (void)setColorcolorTimeout:(NSColor *)colorcolorTimeout
+- (void)setColorTimeout:(NSColor *)colorTimeout
 {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:(colorcolorTimeout ?: [NSColor clearColor])];
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"colorcolorTimeout"];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:(colorTimeout ?: [NSColor clearColor])];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"colorTimeout"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     if (self.colorSettingsChanged)
