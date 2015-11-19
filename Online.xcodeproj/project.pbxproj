@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		970524571BFE553600D22803 /* NSImage+SY.m in Sources */ = {isa = PBXBuildFile; fileRef = 970524561BFE553600D22803 /* NSImage+SY.m */; };
 		971F88091BFE0DFB001FB745 /* SYColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 971F88081BFE0DFB001FB745 /* SYColorView.m */; };
 		97932A991BE0C8A300BFF419 /* SYIntOnlyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 97932A981BE0C8A300BFF419 /* SYIntOnlyFormatter.m */; };
 		9796F0851BEA19F5000FC1ED /* SYSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9796F0841BEA19F5000FC1ED /* SYSettingsViewController.m */; };
@@ -27,6 +28,8 @@
 /* Begin PBXFileReference section */
 		83DBB49F09925D0217AE6725 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8AC1E8969F3CEAB3C6A5EDA3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		970524551BFE553600D22803 /* NSImage+SY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+SY.h"; sourceTree = "<group>"; };
+		970524561BFE553600D22803 /* NSImage+SY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+SY.m"; sourceTree = "<group>"; };
 		971F88071BFE0DFB001FB745 /* SYColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYColorView.h; sourceTree = "<group>"; };
 		971F88081BFE0DFB001FB745 /* SYColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYColorView.m; sourceTree = "<group>"; };
 		97932A971BE0C8A300BFF419 /* SYIntOnlyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYIntOnlyFormatter.h; sourceTree = "<group>"; };
@@ -67,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		970524511BFE550400D22803 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				970524551BFE553600D22803 /* NSImage+SY.h */,
+				970524561BFE553600D22803 /* NSImage+SY.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		97983CAA1BDF68D000275782 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +143,7 @@
 				97E31D861BDE35A00025F40A /* SYAppDelegate.m */,
 				97983CAE1BDF692200275782 /* Model */,
 				97983CAF1BDF6A5700275782 /* Controller */,
+				970524511BFE550400D22803 /* Categories */,
 				97983CAA1BDF68D000275782 /* UI */,
 				97E31D8B1BDE35A00025F40A /* Assets.xcassets */,
 				97E31D8D1BDE35A00025F40A /* MainMenu.xib */,
@@ -292,6 +305,7 @@
 				97E31D8A1BDE35A00025F40A /* main.m in Sources */,
 				97983CA81BDF68CA00275782 /* SYFormViewController.m in Sources */,
 				97983CB51BDF838200275782 /* SYCrawler.m in Sources */,
+				970524571BFE553600D22803 /* NSImage+SY.m in Sources */,
 				97983CB81BDFA7FC00275782 /* SYCrawlerResult.m in Sources */,
 				97932A991BE0C8A300BFF419 /* SYIntOnlyFormatter.m in Sources */,
 				97E31D871BDE35A00025F40A /* SYAppDelegate.m in Sources */,

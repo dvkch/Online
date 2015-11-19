@@ -224,7 +224,11 @@ typedef void(^SYMenuTapBlock)(void);
     self.popover.behavior = NSPopoverBehaviorTransient;
     [self.popover setContentViewController:viewController];
     [self.popover setAnimates:NO];
-    [self.popover showRelativeToRect:self.statusItem.button.frame ofView:self.statusItem.button preferredEdge:NSMinYEdge];
+    [self.popover showRelativeToRect:self.statusItem.button.frame
+                              ofView:self.statusItem.button
+                       preferredEdge:NSMinYEdge];
+    [self.popover.contentViewController.view.window makeKeyAndOrderFront:NSApp];
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 #pragma mark - Proxies

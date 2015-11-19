@@ -7,6 +7,7 @@
 //
 
 #import "SYColorView.h"
+#import "NSImage+SY.h"
 #import <NSColor+ColorExtensions.h>
 #import <CLColorControllerPopove.h>
 
@@ -21,7 +22,18 @@
     [self.popover close];
     
     if (NSPointInRect([self convertPoint:theEvent.locationInWindow fromView:nil], self.bounds))
-        [self openPopover];
+        [self openPopoverWithFocusRings:NO];
+}
+
+- (void)keyDown:(NSEvent *)theEvent
+{
+    if ([self.popover isShown])
+        return;
+    
+    if (theEvent.keyCode == 49 || theEvent.keyCode == 36)
+        return [self openPopoverWithFocusRings:YES];
+    
+    [super keyDown:theEvent];
 }
 
 - (void)setColor:(NSColor *)color
@@ -49,19 +61,50 @@
     
     [[self.color darkenColorByValue:0.1] set];
     [circlePath stroke];
+
+    if ([self.window firstResponder] == self)
+    {
+        [NSGraphicsContext saveGraphicsState];
+        {
+            [[NSColor keyboardFocusIndicatorColor] set];
+            NSSetFocusRingStyle(NSFocusRingOnly);
+            [[NSBezierPath bezierPathWithOvalInRect:self.bounds] fill];
+        }
+        [NSGraphicsContext restoreGraphicsState];
+    }
 }
 
-- (void)openPopover
+- (void)openPopoverWithFocusRings:(BOOL)withFocusRings
 {
     CLColorControllerPopove *controller = [[CLColorControllerPopove alloc] initWithNibName:[[CLColorControllerPopove class] description] bundle:nil];
     [controller setTarget:self];
     [controller setSelector:@selector(popoverDidSelectColor:)];
+    
+    if (withFocusRings)
+    {
+        for (NSButton *view in controller.view.subviews)
+        {
+            if ([view isKindOfClass:[NSButton class]])
+            {
+                NSColor *color = ((NSButtonCell *)view.cell).backgroundColor;
+                [view setImage:[NSImage imageWithColor:color size:view.bounds.size]];
+                [view setBordered:YES];
+                [view setBezelStyle:NSRoundRectBezelStyle];
+                [view setWantsLayer:YES];
+            }
+        }
+    }
     
     self.popover = [[NSPopover alloc] init];
     self.popover.behavior = NSPopoverBehaviorTransient;
     [self.popover setContentViewController:controller];
     [self.popover setAnimates:NO];
     [self.popover showRelativeToRect:self.bounds ofView:self preferredEdge:NSMinYEdge];
+}
+
+- (BOOL)acceptsFirstResponder
+{
+    return (self.popover.shown ? NO : YES);
 }
 
 - (void)popoverDidSelectColor:(NSColor *)color
