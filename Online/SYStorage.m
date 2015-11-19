@@ -36,6 +36,76 @@
     return self;
 }
 
+#pragma mark - Colors
+
+- (NSColor *)defaultColorSuccess
+{
+    return [NSColor colorWithCalibratedRed:0. green:.82 blue:.32 alpha:1.];
+}
+
+- (NSColor *)colorSuccess
+{
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"colorSuccess"];
+    if (!data) return [self defaultColorSuccess];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
+- (void)setColorSuccess:(NSColor *)colorSuccess
+{
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:(colorSuccess ?: [NSColor clearColor])];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"colorSuccess"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (self.colorSettingsChanged)
+        self.colorSettingsChanged();
+}
+
+- (NSColor *)defaultColorTimeout
+{
+    return [NSColor colorWithCalibratedRed:1. green:.75 blue:.29 alpha:1.];
+}
+
+- (NSColor *)colorTimeout
+{
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"colorTimeout"];
+    if (!data) return [self defaultColorTimeout];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
+- (void)setColorcolorTimeout:(NSColor *)colorcolorTimeout
+{
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:(colorcolorTimeout ?: [NSColor clearColor])];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"colorcolorTimeout"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (self.colorSettingsChanged)
+        self.colorSettingsChanged();
+}
+
+- (NSColor *)defaultColorFailure
+{
+    return [NSColor colorWithCalibratedRed:1. green:.34 blue:.37 alpha:1.];
+}
+
+- (NSColor *)colorFailure
+{
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"colorFailure"];
+    if (!data) return [self defaultColorFailure];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
+- (void)setColorFailure:(NSColor *)colorFailure
+{
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:(colorFailure ?: [NSColor clearColor])];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"colorFailure"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (self.colorSettingsChanged)
+        self.colorSettingsChanged();
+}
+
+#pragma mark - Websites
+
 - (void)addWebsite:(SYWebsiteModel *)website
 {
     [self.set addObject:website];

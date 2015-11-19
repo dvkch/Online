@@ -1,10 +1,22 @@
 PODS:
+  - CLColorPicker (1.0)
   - SYProxy (1.0.0)
 
 DEPENDENCIES:
+  - CLColorPicker (from `./Podspecs/CLColorPicker.podspec`)
   - SYProxy
 
+EXTERNAL SOURCES:
+  CLColorPicker:
+    :podspec: ./Podspecs/CLColorPicker.podspec
+
+CHECKOUT OPTIONS:
+  CLColorPicker:
+    :commit: 687a5f802c8a29ac0586dea3dade131e5a24759a
+    :git: https://github.com/sakrist/CLColorPicker.git
+
 SPEC CHECKSUMS:
+  CLColorPicker: ace410da79a063eee42a427b8ed73cc4fea0bd06
   SYProxy: d30777e2cc79410b5ca113c8ae8323fcff5925e3
 
 COCOAPODS: 0.39.0

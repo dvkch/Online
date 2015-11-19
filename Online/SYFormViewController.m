@@ -1,16 +1,16 @@
 //
-//  SYFormWindow.m
+//  SYFormViewController.m
 //  Online
 //
 //  Created by Stan Chevallier on 27/10/2015.
 //  Copyright © 2015 Syan. All rights reserved.
 //
 
-#import "SYFormWindow.h"
+#import "SYFormViewController.h"
 #import "SYStorage.h"
 #import "SYIntOnlyFormatter.h"
 
-@interface SYFormWindow ()
+@interface SYFormViewController ()
 
 @property (nonatomic, weak) IBOutlet NSTextField *fieldName;
 @property (nonatomic, weak) IBOutlet NSTextField *fieldURL;
@@ -26,49 +26,37 @@
 
 @end
 
-@implementation SYFormWindow
+@implementation SYFormViewController
 
-+ (SYFormWindow *)windowForWebsite:(SYWebsiteModel *)website
++ (SYFormViewController *)viewControllerForWebsite:(SYWebsiteModel *)website
 {
     NSNib *nib = [[NSNib alloc] initWithNibNamed:[[self class] description] bundle:nil];
     NSArray *items;
     [nib instantiateWithOwner:nil topLevelObjects:&items];
-    SYFormWindow *window;
+    SYFormViewController *viewController;
     for (NSObject *item in items)
     {
         if ([item isKindOfClass:[self class]])
-            window = (SYFormWindow *)item;
+            viewController = (SYFormViewController *)item;
     }
-    [window setWebsite:website];
-    return window;
+    [viewController setWebsite:website];
+    return viewController;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder
+- (void)viewWillAppear
 {
-    self = [super initWithCoder:coder];
-    if (self)
-    {
-        [self.fieldProxyPort                setFormatter:[SYIntOnlyFormatter new]];
-        [self.fieldTimeout                  setFormatter:[SYIntOnlyFormatter new]];
-        [self.fieldTimeBeforeRetryIfSuccess setFormatter:[SYIntOnlyFormatter new]];
-        [self.fieldTimeBeforeRetryIfFailed  setFormatter:[SYIntOnlyFormatter new]];
-    }
-    return self;
-}
+    [super viewWillAppear];
+    [self.fieldProxyPort                setFormatter:[SYIntOnlyFormatter new]];
+    [self.fieldTimeout                  setFormatter:[SYIntOnlyFormatter new]];
+    [self.fieldTimeBeforeRetryIfSuccess setFormatter:[SYIntOnlyFormatter new]];
+    [self.fieldTimeBeforeRetryIfFailed  setFormatter:[SYIntOnlyFormatter new]];
 
-- (void)update
-{
-    [super update];
     if (self.website)
         [self setTitle:@"Edit website"];
     else
         [self setTitle:@"New website"];
-}
-
-- (void)setWebsite:(SYWebsiteModel *)website
-{
-    self->_website = website;
-    [self updateWithWebsite:website];
+    
+    [self updateWithWebsite:self.website];
 }
 
 - (void)updateWithWebsite:(SYWebsiteModel *)website
@@ -118,7 +106,7 @@
     [alert setInformativeText:message];
     
     [alert addButtonWithTitle:@"Close"];
-    [alert beginSheetModalForWindow:self completionHandler:nil];
+    [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
     
     return NO;
 }
@@ -147,12 +135,12 @@
     website.timeBeforeRetryIfFailed     = self.fieldTimeBeforeRetryIfFailed.doubleValue;
     
     [[SYStorage shared] addWebsite:website];
-    [self close];
+    [self.view.window close];
 }
 
 - (IBAction)cancelButtonTap:(id)sender
 {
-    [self close];
+    [self.view.window close];
 }
 
 @end

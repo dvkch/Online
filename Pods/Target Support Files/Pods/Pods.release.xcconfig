@@ -1,6 +1,6 @@
 CLANG_MODULES_AUTOLINK = YES
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/SYProxy"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/SYProxy"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"SYProxy"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CLColorPicker" "${PODS_ROOT}/Headers/Public/SYProxy"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/CLColorPicker" -isystem "${PODS_ROOT}/Headers/Public/SYProxy"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"CLColorPicker" -l"SYProxy"
 PODS_ROOT = ${SRCROOT}/Pods

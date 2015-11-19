@@ -1,0 +1,1 @@
+../../../CLColorPicker/CLColorPicker/CLColorPickerSegmentedCell.h

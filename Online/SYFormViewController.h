@@ -1,5 +1,5 @@
 //
-//  SYFormWindow.h
+//  SYFormViewController.h
 //  Online
 //
 //  Created by Stan Chevallier on 27/10/2015.
@@ -9,10 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import "SYWebsiteModel.h"
 
-@interface SYFormWindow : NSWindow
+@interface SYFormViewController : NSViewController
 
 @property (nonatomic, strong) SYWebsiteModel *website;
 
-+ (SYFormWindow *)windowForWebsite:(SYWebsiteModel *)website;
++ (SYFormViewController *)viewControllerForWebsite:(SYWebsiteModel *)website;
 
 @end

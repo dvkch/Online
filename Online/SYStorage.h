@@ -12,6 +12,14 @@
 @interface SYStorage : NSObject
 
 @property (nonatomic, copy) void(^websitesUpdatedBlock)(void);
+@property (nonatomic, copy) void(^colorSettingsChanged)(void);
+
+@property (nonatomic) NSColor *colorSuccess;
+@property (nonatomic) NSColor *colorTimeout;
+@property (nonatomic) NSColor *colorFailure;
+@property (nonatomic, readonly) NSColor *defaultColorSuccess;
+@property (nonatomic, readonly) NSColor *defaultColorTimeout;
+@property (nonatomic, readonly) NSColor *defaultColorFailure;
 
 + (SYStorage *)shared;
 
@@ -20,5 +28,6 @@
 - (NSArray <SYWebsiteModel *> *)websites;
 - (NSArray <SYProxyModel *> *)proxies;
 - (SYWebsiteModel *)websiteForId:(NSString *)identifier;
+
 
 @end

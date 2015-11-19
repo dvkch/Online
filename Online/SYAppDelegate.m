@@ -8,8 +8,10 @@
 
 #import "SYAppDelegate.h"
 #import "SYStorage.h"
-#import "SYFormWindow.h"
+#import "SYFormViewController.h"
+#import "SYSettingsViewController.h"
 #import "SYCrawler.h"
+#import "SYColorView.h"
 
 typedef void(^SYMenuTapBlock)(void);
 
@@ -17,31 +19,33 @@ typedef void(^SYMenuTapBlock)(void);
 
 @property (strong, nonatomic) IBOutlet NSMenu *statusMenu;
 @property (strong, nonatomic) NSStatusItem *statusItem;
-@property (strong, nonatomic) NSImage *imageGreen;
-@property (strong, nonatomic) NSImage *imageOrange;
-@property (strong, nonatomic) NSImage *imageRed;
+@property (strong, nonatomic) NSImage *imageSuccess;
+@property (strong, nonatomic) NSImage *imageTimeout;
+@property (strong, nonatomic) NSImage *imageFailure;
 @property (strong, nonatomic) NSImage *imageGrey;
-@property (strong, nonatomic) NSWindow *editWindow;
+@property (strong, nonatomic) NSPopover *popover;
 
 @end
 
 @implementation SYAppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    [self updateImages];
     
     [self.statusMenu setDelegate:self];
     
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [self.statusItem setMenu:self.statusMenu];
-    [self.statusItem setImage:[NSImage imageNamed:@"traffic_grey"]];
+    [self.statusItem setImage:self.imageGrey];
     [self.statusItem setHighlightMode:YES];
     
-    self.imageGrey   = [NSImage imageNamed:@"traffic_grey"];
-    self.imageGreen  = [NSImage imageNamed:@"traffic_green"];
-    self.imageOrange = [NSImage imageNamed:@"traffic_orange"];
-    self.imageRed    = [NSImage imageNamed:@"traffic_red"];
-    
     [[SYCrawler shared] setResultChangedBlock:^{
+        [self updateIcon];
+    }];
+    
+    [[SYStorage shared] setColorSettingsChanged:^{
+        [self updateImages];
         [self updateIcon];
     }];
     
@@ -51,6 +55,16 @@ typedef void(^SYMenuTapBlock)(void);
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
 {
     return NO;
+}
+
+#pragma mark - Images
+
+- (void)updateImages
+{
+    self.imageGrey    = [SYColorView screenshotForColor:[NSColor colorWithCalibratedWhite:0.6 alpha:1.] size:NSMakeSize(12, 12)];
+    self.imageSuccess = [SYColorView screenshotForColor:[[SYStorage shared] colorSuccess] size:NSMakeSize(12, 12)];
+    self.imageTimeout = [SYColorView screenshotForColor:[[SYStorage shared] colorTimeout] size:NSMakeSize(12, 12)];
+    self.imageFailure = [SYColorView screenshotForColor:[[SYStorage shared] colorFailure] size:NSMakeSize(12, 12)];
 }
 
 #pragma mark - Menu
@@ -75,15 +89,15 @@ typedef void(^SYMenuTapBlock)(void);
     
     if (hasError)
     {
-        [self.statusItem setImage:self.imageRed];
+        [self.statusItem setImage:self.imageFailure];
     }
     else if (hasTimeout)
     {
-        [self.statusItem setImage:self.imageOrange];
+        [self.statusItem setImage:self.imageTimeout];
     }
     else if (hasSuccess)
     {
-        [self.statusItem setImage:self.imageGreen];
+        [self.statusItem setImage:self.imageSuccess];
     }
     else
     {
@@ -104,11 +118,16 @@ typedef void(^SYMenuTapBlock)(void);
 {
     switch (status) {
         case SYWebsiteStatus_Unknown:   return self.imageGrey;
-        case SYWebsiteStatus_On:        return self.imageGreen;
-        case SYWebsiteStatus_Timeout:   return self.imageOrange;
-        case SYWebsiteStatus_Error:     return self.imageRed;
+        case SYWebsiteStatus_On:        return self.imageSuccess;
+        case SYWebsiteStatus_Timeout:   return self.imageTimeout;
+        case SYWebsiteStatus_Error:     return self.imageFailure;
     }
     return nil;
+}
+
+- (void)menuWillOpen:(NSMenu *)menu
+{
+    [self.popover close];
 }
 
 - (void)menuNeedsUpdate:(NSMenu*)menu
@@ -136,7 +155,7 @@ typedef void(^SYMenuTapBlock)(void);
         NSMenuItem *itemEdit = [[NSMenuItem alloc] initWithTitle:@"Edit..." action:@selector(menuItemTapped:) keyEquivalent:@""];
         [itemEdit setTarget:self];
         [itemEdit setRepresentedObject:^{
-            [self openEditViewForWebsite:website];
+            [self openFormForWebsite:website];
         }];
         [item.submenu addItem:itemEdit];
         
@@ -158,10 +177,17 @@ typedef void(^SYMenuTapBlock)(void);
     NSMenuItem *itemAdd = [[NSMenuItem alloc] initWithTitle:@"Add new item..." action:@selector(menuItemTapped:) keyEquivalent:@""];
     [itemAdd setTarget:self];
     [itemAdd setRepresentedObject:^{
-        [self openEditViewForWebsite:nil];
+        [self openFormForWebsite:nil];
     }];
     [menu addItem:itemAdd];
-
+    
+    NSMenuItem *itemSettings = [[NSMenuItem alloc] initWithTitle:@"Settings" action:@selector(menuItemTapped:) keyEquivalent:@""];
+    [itemSettings setTarget:self];
+    [itemSettings setRepresentedObject:^{
+        [self openSettings];
+    }];
+    [menu addItem:itemSettings];
+    
     NSMenuItem *itemQuit = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(menuItemTapped:) keyEquivalent:@""];
     [itemQuit setTarget:self];
     [itemQuit setRepresentedObject:^{
@@ -176,20 +202,29 @@ typedef void(^SYMenuTapBlock)(void);
     if (block) block();
 }
 
-#pragma mark - Edit/New
+#pragma mark - Form
 
-- (void)openEditViewForWebsite:(SYWebsiteModel *)website
+- (void)openFormForWebsite:(SYWebsiteModel *)website
 {
-    [self.editWindow close];
+    SYFormViewController *vc = [SYFormViewController viewControllerForWebsite:website];
+    [self openPopoverForViewController:vc];
+}
+
+- (void)openSettings
+{
+    SYSettingsViewController *vc = [SYSettingsViewController viewController];
+    [self openPopoverForViewController:vc];
+}
+
+- (void)openPopoverForViewController:(NSViewController *)viewController
+{
+    [self.popover close];
     
-    SYFormWindow *window = [SYFormWindow windowForWebsite:website];
-    [window center];
-    [window setLevel:NSScreenSaverWindowLevel + 1];
-    [window setOpaque:YES];
-    [window makeKeyAndOrderFront:NSApp];
-    [NSApp activateIgnoringOtherApps:YES];
-    
-    self.editWindow = window;
+    self.popover = [[NSPopover alloc] init];
+    self.popover.behavior = NSPopoverBehaviorTransient;
+    [self.popover setContentViewController:viewController];
+    [self.popover setAnimates:NO];
+    [self.popover showRelativeToRect:self.statusItem.button.frame ofView:self.statusItem.button preferredEdge:NSMinYEdge];
 }
 
 #pragma mark - Proxies
