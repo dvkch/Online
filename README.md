@@ -1,3 +1,5 @@
+<img src="Resources/README-AppIcon.png" width=64 />
+
 # Online
 
 ### Summary
