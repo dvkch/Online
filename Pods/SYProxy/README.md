@@ -1,138 +1,103 @@
-SYKit
+SYProxy
 =======
 
+NSURLProtocol subclass to implement in-app proxying.
 
-Some useful categories and other classes on UIKit and Foundation
-
-
-####UIDevice+SYCategories
-
-Obtain an enum value representing the current device model:
-
-	+ (UIDeviceModel)deviceModelFromHardwareString:(NSString *)value;
-	+ (UIDeviceModel)deviceModelFromModelNumber:(NSString *)value;
-	- (UIDeviceModel)deviceModel;
-	- (BOOL)isIpad;
-
-	// UIDeviceModeliPhone5C
-	[UIDevice deviceModelFromHardwareString:@"iPhone5,4"]
+For a quick introduction to this pod take a look at the example project in this repo. 
 
 
-Help you identifying if the current device supports well blurring views. For now this isn't customizable. I used reports found on the web of people using `FXBlurView` but feel free to send a push request if you want to remove or add a model. The iOS version is not used, only the device model. Models where blurring is too slow for use:
+```
+/**
+ *  Represents a proxy
+ */
+@interface SYProxyModel : NSObject <NSCoding, NSSecureCoding>
 
-	UIDeviceModeliPodTouch1G
-	UIDeviceModeliPodTouch2G
-	UIDeviceModeliPodTouch3G
-	UIDeviceModeliPodTouch4G
-	
-	UIDeviceModeliPhone
-	UIDeviceModeliPhone3G
-	UIDeviceModeliPhone3GS
-	UIDeviceModeliPhone4
-	UIDeviceModeliPhone4S
-	
-	UIDeviceModeliPad1
-	UIDeviceModeliPad3
- 
-	- (BOOL)shouldSupportViewBlur;
+/**
+ *  To uniquely identify an object. This string is autmatically generated when calling `-init`, and 
+ *  again when calling `copy`
+ */
+@property (nonatomic, strong, readonly) NSString *identifier;
 
+/**
+ *  Proxy host name or address
+ */
+@property (nonatomic, strong) NSString *host;
 
-Methods to access and use the iOS version string:
+/**
+ *  Proxy port
+ */
+@property (nonatomic, assign) int port;
 
-	- (NSString*)systemVersionCached;
+/**
+ *  Proxy username if any
+ */
+@property (nonatomic, strong) NSString *username;
 
-	- (BOOL)iOSisEqualTo:(NSString *)version;
-	- (BOOL)iOSisGreaterThan:(NSString *)version;
-	- (BOOL)iOSisGreaterThanOrEqualTo:(NSString *)version;
-	- (BOOL)iOSisLessThan:(NSString *)version;
-	
-	+ (BOOL)iOSis6Plus;
-	+ (BOOL)iOSis7Plus;
-	+ (BOOL)iOSis8Plus;
+/**
+ *  Proxy password if any
+ */
+@property (nonatomic, strong) NSString *password;
 
-####UIScreen+SYCategories
+/**
+ *  Array of wildcard rules. They will be used to determine if given URLs are eligible for this proxy
+ */
+@property (nonatomic, strong) NSArray <NSString *> *urlWildcardRules;
 
-In iOS8 Apple changed the behavior of `-[UIScreen bounds]` method. It used to return the size of the screen independently of the interface orientation, but this is no longer the case. The following method restores this behavior:
+/**
+ *  Creates a new proxy object with the given host and port
+ *
+ *  @param host proxy host name or address
+ *  @param port proxy port
+ *
+ *  @return new proxy object
+ */
+- (instancetype)initWithHost:(NSString *)host port:(int)port;
 
-	- (CGRect)boundsFixedToPortraitOrientation;
+/**
+ *  Determines if a proxy is able to work for the given URL. It will iterate through the list
+ *  of `urlWildcardRules` to determine if the URL matches the user criteria.
+ *
+ *  @param url url
+ *
+ *  @return `YES` if the receiver can be used for the given URL, otherwise `NO`
+ */
+- (BOOL)isValidForURL:(NSURL *)url;
 
-If like me you still support old iOS versions and therefore don't use auto-layout this method allows you to obtain the usable scree, size as a frame with some options:
+/**
+ *  Returns a copy of the receiver. The `identifier` property will be a new one.
+ *  @return copy of the receiver
+ */
+- (id)copy;
 
-	- (CGRect)screenRectForOrientation:(UIInterfaceOrientation)orientation
-    	showStatusBarOnIphoneLandscape:(BOOL)showStatusBarOnIphoneLandscape
-        	   ignoreStatusBariOSOver7:(BOOL)ignoreStatusBariOSOver7;
+/**
+ *  Helper method to determine the first proxy available for a given url. It will go through all
+ *  the given proxies and use the method `-isValidForURL:` to determine if the current proxy
+ *  can be used for this URL.
+ *
+ *  @param proxies Array of `SYProxyModel` objects
+ *  @param url     url
+ *
+ *  @return first proxy available for the given URL if any found, otherwise `nil`
+ */
++ (SYProxyModel *)firstProxyInProxies:(NSArray <SYProxyModel *> *)proxies matchingURL:(NSURL *)url;
 
+@end
+```
+    
 
-####SYScreenHelper
+```    
+@protocol SYProxyURLProtocolDataSource <NSObject>
 
-Wrapper around `UIScreen (SYCategories)` methods to create frames representing the full screen or usable screen space (uses y offset to ignore iOS7+ statys bar). 
+- (SYProxyModel *)firstProxyMatchingURL:(NSURL *)url;
 
-It uses a gcd-based singleton to keep a shared instance. A single property can be changed: `BOOL showStatusBarOnIphoneLandscape`. It controls whether or not the iOS status bar will be hidden or not on an iPhone in landscape.
+@end
 
-Methods:
+@interface SYProxyURLProtocol : NSURLProtocol
 
-	- (void)updateStatusBarVisibility:(UIInterfaceOrientation)orientation animated:(BOOL)animated;
-	- (CGRect)screenRect:(UIInterfaceOrientation)orientation; // has offset (origin.y != 0) on iOS >= 7
-	- (CGRect)fullScreenRect:(UIInterfaceOrientation)orientation; // ignores status bar
++ (void)setDataSource:(id<SYProxyURLProtocolDataSource>)dataSource;
 
-####CGTools
-
-Contains C functions to work with `CGRect`s
-
-	CGRect CGRectCenteredInsideRectWithSize(CGRect inside, CGSize size, BOOL fromOutside);
-	CGRect CGRectCenteredSquarreInsideRectWithSize(CGRect inside, CGFloat size, BOOL fromOutside);
-	CGRect CGRectInsetPercent(CGRect rect, CGFloat percentX, CGFloat percentY);
-
-####UIImage+SYKit
-
-Some methods to play with images, mainly to create resized copies of images or new images from a plain color
-
-	// convert an image to an iOS6 like bar button image
-	- (UIImage *)imageWithToolbarButtonStyling;
-
-	// mask an image with another color. the image needs to have an alpha channel
-	- (UIImage *)imageMaskedWithColor:(UIColor *)maskColor;
-
-	// create a new 1x1 image with the given color
-	+ (UIImage *)imageWithColor:(UIColor *)color;
-
-	// create a new image with the given color, size and corner radius
-	+ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius;
-
-	// rotate an image with an arbitrary angle
-	- (UIImage *)imageWithAngle:(CGFloat)angle;
-
-	// create a new image from the receiver by adding transparent padding
-	- (UIImage *)imageByAddingPaddingTop:(CGFloat)top
-	                                left:(CGFloat)left
-	                               right:(CGFloat)right
-	                              bottom:(CGFloat)bottom;
-
-	// resize image to new size, without checking if the new image will be distrorted or not
-	- (UIImage *)imageResizedTo:(CGSize)size;
-	
-	// resize image to a new squarre size
-	- (UIImage *)imageResizedSquarreTo:(CGFloat)size;
-	
-	// resize image with correct ascpect to a new height
-	- (UIImage *)imageResizedHeightTo:(CGFloat)height;
-	
-	// resize image with correct ascpect to a new width
-	- (UIImage *)imageResizedWidthTo:(CGFloat)width;
-
-
-####SYSearchBar
-
-Simple reproduction of iOS Safari search/URL bar. There is no simple way to customize this yet, but if you need just ask me and I'll update with some customization methods.
-
-	@interface SYSearchField : UIView
-	
-	@property (nonatomic, strong) NSURL *displayedURL;
-	@property (nonatomic, weak) IBOutlet id<SYSearchFieldDelegate> delegate;
-	
-	- (void)showLoadingIndicator:(BOOL)showLoadingIndicator;
-	
-	@end
+@end
+```
 
 
 License

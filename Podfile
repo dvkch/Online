@@ -4,5 +4,8 @@ platform :osx, '10.9'
 
 inhibit_all_warnings!
 
-pod 'SYProxy'
-pod 'CLColorPicker', :podspec => './Podspecs/CLColorPicker.podspec'
+target 'Online' do    
+    pod 'SYProxy'
+    pod 'CLColorPicker', :podspec => './Podspecs/CLColorPicker.podspec'
+end
+

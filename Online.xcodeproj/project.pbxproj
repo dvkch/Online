@@ -22,12 +22,11 @@
 		97E31D8A1BDE35A00025F40A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E31D891BDE35A00025F40A /* main.m */; };
 		97E31D8C1BDE35A00025F40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97E31D8B1BDE35A00025F40A /* Assets.xcassets */; };
 		97E31D8F1BDE35A00025F40A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97E31D8D1BDE35A00025F40A /* MainMenu.xib */; };
-		D3C6C741A2942884EBC04F50 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC1E8969F3CEAB3C6A5EDA3 /* libPods.a */; };
+		DB5117D16B29240AD90B73AA /* libPods-Online.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6B8B3D91A3E60829B8635DC /* libPods-Online.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		83DBB49F09925D0217AE6725 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		8AC1E8969F3CEAB3C6A5EDA3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		32167EC598778A65C367EEBA /* Pods-Online.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Online.debug.xcconfig"; path = "Target Support Files/Pods-Online/Pods-Online.debug.xcconfig"; sourceTree = "<group>"; };
 		970524551BFE553600D22803 /* NSImage+SY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+SY.h"; sourceTree = "<group>"; };
 		970524561BFE553600D22803 /* NSImage+SY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+SY.m"; sourceTree = "<group>"; };
 		971F88071BFE0DFB001FB745 /* SYColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYColorView.h; sourceTree = "<group>"; };
@@ -55,7 +54,8 @@
 		97E31D8B1BDE35A00025F40A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97E31D8E1BDE35A00025F40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		97E31D901BDE35A00025F40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AC958C1B9A381820BDDFBA2E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B6B8B3D91A3E60829B8635DC /* libPods-Online.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Online.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD240CC71375A5D672E2DFE5 /* Pods-Online.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Online.release.xcconfig"; path = "Target Support Files/Pods-Online/Pods-Online.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3C6C741A2942884EBC04F50 /* libPods.a in Frameworks */,
+				DB5117D16B29240AD90B73AA /* libPods-Online.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,8 +123,8 @@
 			children = (
 				97E31D841BDE35A00025F40A /* Online */,
 				97E31D831BDE35A00025F40A /* Products */,
-				EA48874030E096CF9C0E2166 /* Pods */,
-				CF902B584F6A18BDB48CB75E /* Frameworks */,
+				D60F71B3C7CFD9C213B40A34 /* Pods */,
+				991F5F157244BD31FC8B9E2C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,21 +161,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CF902B584F6A18BDB48CB75E /* Frameworks */ = {
+		991F5F157244BD31FC8B9E2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8AC1E8969F3CEAB3C6A5EDA3 /* libPods.a */,
+				B6B8B3D91A3E60829B8635DC /* libPods-Online.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EA48874030E096CF9C0E2166 /* Pods */ = {
+		D60F71B3C7CFD9C213B40A34 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AC958C1B9A381820BDDFBA2E /* Pods.debug.xcconfig */,
-				83DBB49F09925D0217AE6725 /* Pods.release.xcconfig */,
+				32167EC598778A65C367EEBA /* Pods-Online.debug.xcconfig */,
+				CD240CC71375A5D672E2DFE5 /* Pods-Online.release.xcconfig */,
 			);
-			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,12 +185,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97E31D931BDE35A00025F40A /* Build configuration list for PBXNativeTarget "Online" */;
 			buildPhases = (
-				899AAA2BEDA4BD50801B9E42 /* Check Pods Manifest.lock */,
+				55DD1D2C1BAE184366E9EB16 /* [CP] Check Pods Manifest.lock */,
 				97E31D7E1BDE35A00025F40A /* Sources */,
 				97E31D7F1BDE35A00025F40A /* Frameworks */,
 				97E31D801BDE35A00025F40A /* Resources */,
-				AF02D6EB8F61C107E984DE04 /* Embed Pods Frameworks */,
-				3D65CF6B23D6B14715EFB61C /* Copy Pods Resources */,
+				6D97D0C843211FECE4DD9754 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -250,49 +249,48 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3D65CF6B23D6B14715EFB61C /* Copy Pods Resources */ = {
+		55DD1D2C1BAE184366E9EB16 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Online-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		899AAA2BEDA4BD50801B9E42 /* Check Pods Manifest.lock */ = {
+		6D97D0C843211FECE4DD9754 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Online/Pods-Online-resources.sh",
+				"${PODS_ROOT}/CLColorPicker/CLColorPicker/CLColorControllerPopove.xib",
+				"${PODS_ROOT}/CLColorPicker/CLColorPicker_example/Images.xcassets/colorpicker_icon.imageset/colorpicker_icon.png",
+				"${PODS_ROOT}/CLColorPicker/CLColorPicker_example/Images.xcassets/colorpicker_icon.imageset/colorpicker_icon@2x.png",
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CLColorControllerPopove.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/colorpicker_icon.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/colorpicker_icon@2x.png",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		AF02D6EB8F61C107E984DE04 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Online/Pods-Online-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -411,13 +409,16 @@
 		};
 		97E31D941BDE35A00025F40A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC958C1B9A381820BDDFBA2E /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 32167EC598778A65C367EEBA /* Pods-Online.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = Online/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.syan.Online;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -425,13 +426,16 @@
 		};
 		97E31D951BDE35A00025F40A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83DBB49F09925D0217AE6725 /* Pods.release.xcconfig */;
+			baseConfigurationReference = CD240CC71375A5D672E2DFE5 /* Pods-Online.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = Online/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.syan.Online;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

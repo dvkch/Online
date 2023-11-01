@@ -1,5 +1,0 @@
-CLANG_MODULES_AUTOLINK = YES
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/CLColorPicker" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CLColorPicker" "${PODS_ROOT}/Headers/Public/SYProxy"
-PODS_ROOT = ${SRCROOT}
-SKIP_INSTALL = YES
