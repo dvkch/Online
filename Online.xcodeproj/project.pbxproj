@@ -31,6 +31,7 @@
 		970524561BFE553600D22803 /* NSImage+SY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+SY.m"; sourceTree = "<group>"; };
 		971F88071BFE0DFB001FB745 /* SYColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYColorView.h; sourceTree = "<group>"; };
 		971F88081BFE0DFB001FB745 /* SYColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYColorView.m; sourceTree = "<group>"; };
+		977AE1E82AF2AB3600E89FC8 /* Online.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Online.entitlements; sourceTree = "<group>"; };
 		97932A971BE0C8A300BFF419 /* SYIntOnlyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYIntOnlyFormatter.h; sourceTree = "<group>"; };
 		97932A981BE0C8A300BFF419 /* SYIntOnlyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYIntOnlyFormatter.m; sourceTree = "<group>"; };
 		9796F0831BEA19F5000FC1ED /* SYSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSettingsViewController.h; sourceTree = "<group>"; };
@@ -139,6 +140,7 @@
 		97E31D841BDE35A00025F40A /* Online */ = {
 			isa = PBXGroup;
 			children = (
+				977AE1E82AF2AB3600E89FC8 /* Online.entitlements */,
 				97E31D851BDE35A00025F40A /* SYAppDelegate.h */,
 				97E31D861BDE35A00025F40A /* SYAppDelegate.m */,
 				97983CAE1BDF692200275782 /* Model */,
@@ -213,7 +215,6 @@
 				TargetAttributes = {
 					97E31D811BDE35A00025F40A = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 79RY8264V4;
 					};
 				};
 			};
@@ -442,8 +443,11 @@
 			baseConfigurationReference = 32167EC598778A65C367EEBA /* Pods-Online.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Online/Online.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 79RY8264V4;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Online/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -459,8 +463,11 @@
 			baseConfigurationReference = CD240CC71375A5D672E2DFE5 /* Pods-Online.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Online/Online.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 79RY8264V4;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Online/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
