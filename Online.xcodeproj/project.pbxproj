@@ -7,50 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		970524571BFE553600D22803 /* NSImage+SY.m in Sources */ = {isa = PBXBuildFile; fileRef = 970524561BFE553600D22803 /* NSImage+SY.m */; };
-		971F88091BFE0DFB001FB745 /* SYColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 971F88081BFE0DFB001FB745 /* SYColorView.m */; };
-		9743ADE62BCC0ACB00BEEE66 /* SYProxy in Frameworks */ = {isa = PBXBuildFile; productRef = 9743ADE52BCC0ACB00BEEE66 /* SYProxy */; };
-		97932A991BE0C8A300BFF419 /* SYIntOnlyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 97932A981BE0C8A300BFF419 /* SYIntOnlyFormatter.m */; };
-		9796F0851BEA19F5000FC1ED /* SYSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9796F0841BEA19F5000FC1ED /* SYSettingsViewController.m */; };
-		9796F0871BEA1A08000FC1ED /* SYSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9796F0861BEA1A08000FC1ED /* SYSettingsViewController.xib */; };
-		97983CA81BDF68CA00275782 /* SYFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97983CA61BDF68CA00275782 /* SYFormViewController.m */; };
-		97983CA91BDF68CA00275782 /* SYFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97983CA71BDF68CA00275782 /* SYFormViewController.xib */; };
-		97983CAD1BDF691800275782 /* SYWebsiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 97983CAC1BDF691800275782 /* SYWebsiteModel.m */; };
-		97983CB21BDF6A6800275782 /* SYStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 97983CB11BDF6A6800275782 /* SYStorage.m */; };
-		97983CB51BDF838200275782 /* SYCrawler.m in Sources */ = {isa = PBXBuildFile; fileRef = 97983CB41BDF838200275782 /* SYCrawler.m */; };
-		97983CB81BDFA7FC00275782 /* SYCrawlerResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 97983CB71BDFA7FC00275782 /* SYCrawlerResult.m */; };
-		97E31D871BDE35A00025F40A /* SYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E31D861BDE35A00025F40A /* SYAppDelegate.m */; };
-		97E31D8A1BDE35A00025F40A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E31D891BDE35A00025F40A /* main.m */; };
+		97544F112BCB622C000EBA9A /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97544F102BCB622C000EBA9A /* FormViewController.swift */; };
+		97544F132BCB63A7000EBA9A /* NSViewController+SY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97544F122BCB63A7000EBA9A /* NSViewController+SY.swift */; };
+		97544F172BCB648A000EBA9A /* IntOnlyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97544F162BCB648A000EBA9A /* IntOnlyFormatter.swift */; };
+		97544F1B2BCB6A6B000EBA9A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97544F1A2BCB6A6B000EBA9A /* SettingsViewController.swift */; };
+		97544F1D2BCB6C45000EBA9A /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97544F1C2BCB6C45000EBA9A /* ColorView.swift */; };
+		97544F1F2BCB6EFA000EBA9A /* NSColor+SY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97544F1E2BCB6EFA000EBA9A /* NSColor+SY.swift */; };
+		978DADAB2BCC0D12001FD35F /* SYProxy in Frameworks */ = {isa = PBXBuildFile; productRef = 978DADAA2BCC0D12001FD35F /* SYProxy */; };
+		9790221A2BCB360500A0BADF /* WebsiteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979022192BCB360500A0BADF /* WebsiteStatus.swift */; };
+		9796F0871BEA1A08000FC1ED /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9796F0861BEA1A08000FC1ED /* SettingsViewController.xib */; };
+		97983CA91BDF68CA00275782 /* FormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97983CA71BDF68CA00275782 /* FormViewController.xib */; };
+		97D3CA452BCA0C9800A54D1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3CA442BCA0C9800A54D1D /* AppDelegate.swift */; };
+		97D3CA472BCA98CB00A54D1D /* Website.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3CA462BCA98CB00A54D1D /* Website.swift */; };
+		97D3CA4C2BCA9D5C00A54D1D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3CA4B2BCA9D5C00A54D1D /* Storage.swift */; };
+		97D3CA4F2BCA9F1800A54D1D /* UserDefaults+SY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3CA4E2BCA9F1800A54D1D /* UserDefaults+SY.swift */; };
+		97D3CA512BCAA21B00A54D1D /* NSImage+SY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3CA502BCAA21B00A54D1D /* NSImage+SY.swift */; };
+		97D3CA532BCAA28A00A54D1D /* Crawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3CA522BCAA28A00A54D1D /* Crawler.swift */; };
 		97E31D8C1BDE35A00025F40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97E31D8B1BDE35A00025F40A /* Assets.xcassets */; };
 		97E31D8F1BDE35A00025F40A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97E31D8D1BDE35A00025F40A /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		970524551BFE553600D22803 /* NSImage+SY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+SY.h"; sourceTree = "<group>"; };
-		970524561BFE553600D22803 /* NSImage+SY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+SY.m"; sourceTree = "<group>"; };
-		971F88071BFE0DFB001FB745 /* SYColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYColorView.h; sourceTree = "<group>"; };
-		971F88081BFE0DFB001FB745 /* SYColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYColorView.m; sourceTree = "<group>"; };
+		97544F102BCB622C000EBA9A /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		97544F122BCB63A7000EBA9A /* NSViewController+SY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSViewController+SY.swift"; sourceTree = "<group>"; };
+		97544F162BCB648A000EBA9A /* IntOnlyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntOnlyFormatter.swift; sourceTree = "<group>"; };
+		97544F1A2BCB6A6B000EBA9A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		97544F1C2BCB6C45000EBA9A /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
+		97544F1E2BCB6EFA000EBA9A /* NSColor+SY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+SY.swift"; sourceTree = "<group>"; };
 		977AE1E82AF2AB3600E89FC8 /* Online.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Online.entitlements; sourceTree = "<group>"; };
-		97932A971BE0C8A300BFF419 /* SYIntOnlyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYIntOnlyFormatter.h; sourceTree = "<group>"; };
-		97932A981BE0C8A300BFF419 /* SYIntOnlyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYIntOnlyFormatter.m; sourceTree = "<group>"; };
-		9796F0831BEA19F5000FC1ED /* SYSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSettingsViewController.h; sourceTree = "<group>"; };
-		9796F0841BEA19F5000FC1ED /* SYSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSettingsViewController.m; sourceTree = "<group>"; };
-		9796F0861BEA1A08000FC1ED /* SYSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SYSettingsViewController.xib; sourceTree = "<group>"; };
-		97983CA51BDF68CA00275782 /* SYFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYFormViewController.h; sourceTree = "<group>"; };
-		97983CA61BDF68CA00275782 /* SYFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYFormViewController.m; sourceTree = "<group>"; };
-		97983CA71BDF68CA00275782 /* SYFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SYFormViewController.xib; sourceTree = "<group>"; };
-		97983CAB1BDF691800275782 /* SYWebsiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYWebsiteModel.h; sourceTree = "<group>"; };
-		97983CAC1BDF691800275782 /* SYWebsiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYWebsiteModel.m; sourceTree = "<group>"; };
-		97983CB01BDF6A6800275782 /* SYStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYStorage.h; sourceTree = "<group>"; };
-		97983CB11BDF6A6800275782 /* SYStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYStorage.m; sourceTree = "<group>"; };
-		97983CB31BDF838200275782 /* SYCrawler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYCrawler.h; sourceTree = "<group>"; };
-		97983CB41BDF838200275782 /* SYCrawler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYCrawler.m; sourceTree = "<group>"; };
-		97983CB61BDFA7FC00275782 /* SYCrawlerResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYCrawlerResult.h; sourceTree = "<group>"; };
-		97983CB71BDFA7FC00275782 /* SYCrawlerResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYCrawlerResult.m; sourceTree = "<group>"; };
+		979022192BCB360500A0BADF /* WebsiteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteStatus.swift; sourceTree = "<group>"; };
+		9796F0861BEA1A08000FC1ED /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		97983CA71BDF68CA00275782 /* FormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormViewController.xib; sourceTree = "<group>"; };
+		97D3CA442BCA0C9800A54D1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		97D3CA462BCA98CB00A54D1D /* Website.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Website.swift; sourceTree = "<group>"; };
+		97D3CA4B2BCA9D5C00A54D1D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		97D3CA4E2BCA9F1800A54D1D /* UserDefaults+SY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+SY.swift"; sourceTree = "<group>"; };
+		97D3CA502BCAA21B00A54D1D /* NSImage+SY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+SY.swift"; sourceTree = "<group>"; };
+		97D3CA522BCAA28A00A54D1D /* Crawler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crawler.swift; sourceTree = "<group>"; };
 		97E31D821BDE35A00025F40A /* Online.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Online.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		97E31D851BDE35A00025F40A /* SYAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYAppDelegate.h; sourceTree = "<group>"; };
-		97E31D861BDE35A00025F40A /* SYAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYAppDelegate.m; sourceTree = "<group>"; };
-		97E31D891BDE35A00025F40A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		97E31D8B1BDE35A00025F40A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97E31D8E1BDE35A00025F40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		97E31D901BDE35A00025F40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,59 +55,53 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9743ADE62BCC0ACB00BEEE66 /* SYProxy in Frameworks */,
+				978DADAB2BCC0D12001FD35F /* SYProxy in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		970524511BFE550400D22803 /* Categories */ = {
+		97544F152BCB6471000EBA9A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				970524551BFE553600D22803 /* NSImage+SY.h */,
-				970524561BFE553600D22803 /* NSImage+SY.m */,
+				97544F162BCB648A000EBA9A /* IntOnlyFormatter.swift */,
+				97D3CA462BCA98CB00A54D1D /* Website.swift */,
+				979022192BCB360500A0BADF /* WebsiteStatus.swift */,
 			);
-			name = Categories;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		97983CAA1BDF68D000275782 /* UI */ = {
+		97544F182BCB6534000EBA9A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				97983CA51BDF68CA00275782 /* SYFormViewController.h */,
-				97983CA61BDF68CA00275782 /* SYFormViewController.m */,
-				97983CA71BDF68CA00275782 /* SYFormViewController.xib */,
-				97932A971BE0C8A300BFF419 /* SYIntOnlyFormatter.h */,
-				97932A981BE0C8A300BFF419 /* SYIntOnlyFormatter.m */,
-				9796F0831BEA19F5000FC1ED /* SYSettingsViewController.h */,
-				9796F0841BEA19F5000FC1ED /* SYSettingsViewController.m */,
-				9796F0861BEA1A08000FC1ED /* SYSettingsViewController.xib */,
-				971F88071BFE0DFB001FB745 /* SYColorView.h */,
-				971F88081BFE0DFB001FB745 /* SYColorView.m */,
+				97D3CA522BCAA28A00A54D1D /* Crawler.swift */,
+				97D3CA4B2BCA9D5C00A54D1D /* Storage.swift */,
 			);
-			name = UI;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		97983CAE1BDF692200275782 /* Model */ = {
+		97544F192BCB6543000EBA9A /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				97983CAB1BDF691800275782 /* SYWebsiteModel.h */,
-				97983CAC1BDF691800275782 /* SYWebsiteModel.m */,
-				97983CB61BDFA7FC00275782 /* SYCrawlerResult.h */,
-				97983CB71BDFA7FC00275782 /* SYCrawlerResult.m */,
+				97544F1C2BCB6C45000EBA9A /* ColorView.swift */,
+				97544F102BCB622C000EBA9A /* FormViewController.swift */,
+				97983CA71BDF68CA00275782 /* FormViewController.xib */,
+				97544F1A2BCB6A6B000EBA9A /* SettingsViewController.swift */,
+				9796F0861BEA1A08000FC1ED /* SettingsViewController.xib */,
 			);
-			name = Model;
+			path = UI;
 			sourceTree = "<group>";
 		};
-		97983CAF1BDF6A5700275782 /* Controller */ = {
+		97D3CA4D2BCA9F0800A54D1D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				97983CB01BDF6A6800275782 /* SYStorage.h */,
-				97983CB11BDF6A6800275782 /* SYStorage.m */,
-				97983CB31BDF838200275782 /* SYCrawler.h */,
-				97983CB41BDF838200275782 /* SYCrawler.m */,
+				97D3CA502BCAA21B00A54D1D /* NSImage+SY.swift */,
+				97544F122BCB63A7000EBA9A /* NSViewController+SY.swift */,
+				97D3CA4E2BCA9F1800A54D1D /* UserDefaults+SY.swift */,
+				97544F1E2BCB6EFA000EBA9A /* NSColor+SY.swift */,
 			);
-			name = Controller;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		97E31D791BDE35A00025F40A = {
@@ -136,26 +124,16 @@
 			isa = PBXGroup;
 			children = (
 				977AE1E82AF2AB3600E89FC8 /* Online.entitlements */,
-				97E31D851BDE35A00025F40A /* SYAppDelegate.h */,
-				97E31D861BDE35A00025F40A /* SYAppDelegate.m */,
-				97983CAE1BDF692200275782 /* Model */,
-				97983CAF1BDF6A5700275782 /* Controller */,
-				970524511BFE550400D22803 /* Categories */,
-				97983CAA1BDF68D000275782 /* UI */,
+				97D3CA4D2BCA9F0800A54D1D /* Extensions */,
+				97544F152BCB6471000EBA9A /* Models */,
+				97544F182BCB6534000EBA9A /* Controllers */,
+				97544F192BCB6543000EBA9A /* UI */,
 				97E31D8B1BDE35A00025F40A /* Assets.xcassets */,
+				97D3CA442BCA0C9800A54D1D /* AppDelegate.swift */,
 				97E31D8D1BDE35A00025F40A /* MainMenu.xib */,
 				97E31D901BDE35A00025F40A /* Info.plist */,
-				97E31D881BDE35A00025F40A /* Supporting Files */,
 			);
 			path = Online;
-			sourceTree = "<group>";
-		};
-		97E31D881BDE35A00025F40A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				97E31D891BDE35A00025F40A /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +143,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97E31D931BDE35A00025F40A /* Build configuration list for PBXNativeTarget "Online" */;
 			buildPhases = (
+				97D3CA482BCA99E000A54D1D /* TODOs */,
 				97E31D7E1BDE35A00025F40A /* Sources */,
 				97E31D7F1BDE35A00025F40A /* Frameworks */,
 				97E31D801BDE35A00025F40A /* Resources */,
@@ -175,7 +154,7 @@
 			);
 			name = Online;
 			packageProductDependencies = (
-				9743ADE52BCC0ACB00BEEE66 /* SYProxy */,
+				978DADAA2BCC0D12001FD35F /* SYProxy */,
 			);
 			productName = Online;
 			productReference = 97E31D821BDE35A00025F40A /* Online.app */;
@@ -189,26 +168,26 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = SY;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = Syan;
 				TargetAttributes = {
 					97E31D811BDE35A00025F40A = {
 						CreatedOnToolsVersion = 7.0.1;
+						LastSwiftMigration = 1530;
 					};
 				};
 			};
 			buildConfigurationList = 97E31D7D1BDE35A00025F40A /* Build configuration list for PBXProject "Online" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
 			mainGroup = 97E31D791BDE35A00025F40A;
 			packageReferences = (
-				9743ADE42BCC0ACB00BEEE66 /* XCRemoteSwiftPackageReference "SYProxy" */,
+				978DADA92BCC0D12001FD35F /* XCRemoteSwiftPackageReference "SYProxy" */,
 			);
 			productRefGroup = 97E31D831BDE35A00025F40A /* Products */;
 			projectDirPath = "";
@@ -224,31 +203,55 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97983CA91BDF68CA00275782 /* SYFormViewController.xib in Resources */,
+				97983CA91BDF68CA00275782 /* FormViewController.xib in Resources */,
 				97E31D8C1BDE35A00025F40A /* Assets.xcassets in Resources */,
-				9796F0871BEA1A08000FC1ED /* SYSettingsViewController.xib in Resources */,
+				9796F0871BEA1A08000FC1ED /* SettingsViewController.xib in Resources */,
 				97E31D8F1BDE35A00025F40A /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		97D3CA482BCA99E000A54D1D /* TODOs */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = TODOs;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "declare -a TAGS=(\"TODO:\" \"LATER:\")\necho \"searching ${SRCROOT} for ${TAGS}\"\n\nfor TAG in ${TAGS[@]}; do\nfind \"${SRCROOT}/Online\" \\( -name \"*.swift\" -or -name \"*.m\" -or -name \"*.h\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAG).*\\$\" | perl -p -e \"s/($TAG)/ warning: \\$1/\"\ndone\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		97E31D7E1BDE35A00025F40A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97E31D8A1BDE35A00025F40A /* main.m in Sources */,
-				97983CA81BDF68CA00275782 /* SYFormViewController.m in Sources */,
-				97983CB51BDF838200275782 /* SYCrawler.m in Sources */,
-				970524571BFE553600D22803 /* NSImage+SY.m in Sources */,
-				97983CB81BDFA7FC00275782 /* SYCrawlerResult.m in Sources */,
-				97932A991BE0C8A300BFF419 /* SYIntOnlyFormatter.m in Sources */,
-				97E31D871BDE35A00025F40A /* SYAppDelegate.m in Sources */,
-				97983CAD1BDF691800275782 /* SYWebsiteModel.m in Sources */,
-				9796F0851BEA19F5000FC1ED /* SYSettingsViewController.m in Sources */,
-				97983CB21BDF6A6800275782 /* SYStorage.m in Sources */,
-				971F88091BFE0DFB001FB745 /* SYColorView.m in Sources */,
+				97D3CA452BCA0C9800A54D1D /* AppDelegate.swift in Sources */,
+				97544F132BCB63A7000EBA9A /* NSViewController+SY.swift in Sources */,
+				9790221A2BCB360500A0BADF /* WebsiteStatus.swift in Sources */,
+				97544F1D2BCB6C45000EBA9A /* ColorView.swift in Sources */,
+				97D3CA512BCAA21B00A54D1D /* NSImage+SY.swift in Sources */,
+				97544F172BCB648A000EBA9A /* IntOnlyFormatter.swift in Sources */,
+				97D3CA532BCAA28A00A54D1D /* Crawler.swift in Sources */,
+				97D3CA4C2BCA9D5C00A54D1D /* Storage.swift in Sources */,
+				97544F112BCB622C000EBA9A /* FormViewController.swift in Sources */,
+				97D3CA472BCA98CB00A54D1D /* Website.swift in Sources */,
+				97544F1B2BCB6A6B000EBA9A /* SettingsViewController.swift in Sources */,
+				97544F1F2BCB6EFA000EBA9A /* NSColor+SY.swift in Sources */,
+				97D3CA4F2BCA9F1800A54D1D /* UserDefaults+SY.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +373,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};
@@ -377,6 +381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Online/Online.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -389,6 +394,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.syan.Online;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -396,6 +403,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Online/Online.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -408,6 +416,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.syan.Online;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -435,7 +444,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9743ADE42BCC0ACB00BEEE66 /* XCRemoteSwiftPackageReference "SYProxy" */ = {
+		978DADA92BCC0D12001FD35F /* XCRemoteSwiftPackageReference "SYProxy" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dvkch/SYProxy.git";
 			requirement = {
@@ -446,9 +455,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9743ADE52BCC0ACB00BEEE66 /* SYProxy */ = {
+		978DADAA2BCC0D12001FD35F /* SYProxy */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9743ADE42BCC0ACB00BEEE66 /* XCRemoteSwiftPackageReference "SYProxy" */;
+			package = 978DADA92BCC0D12001FD35F /* XCRemoteSwiftPackageReference "SYProxy" */;
 			productName = SYProxy;
 		};
 /* End XCSwiftPackageProductDependency section */
