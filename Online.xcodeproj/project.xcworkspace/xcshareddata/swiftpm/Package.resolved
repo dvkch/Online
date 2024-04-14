@@ -1,0 +1,15 @@
+{
+  "originHash" : "908bb22df423a88e4a77a73cd421c271f3e371b5c7131c7b3c50097fdfe85c31",
+  "pins" : [
+    {
+      "identity" : "syproxy",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dvkch/SYProxy.git",
+      "state" : {
+        "revision" : "b6ec0587579631c2347ad6ba598f2e772528c392",
+        "version" : "2.1.0"
+      }
+    }
+  ],
+  "version" : 3
+}

@@ -8,9 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface SYColorView : NSControl
-
-@property (nonatomic, strong) NSColor *color;
+@interface SYColorView : NSColorWell
 
 - (NSImage *)screenshot;
 + (NSImage *)screenshotForColor:(NSColor *)color size:(NSSize)size;

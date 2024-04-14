@@ -8,7 +8,6 @@
 
 #import "SYSettingsViewController.h"
 #import "SYStorage.h"
-#import <CLColorControllerPopove.h>
 #import "SYColorView.h"
 
 @interface SYSettingsViewController ()

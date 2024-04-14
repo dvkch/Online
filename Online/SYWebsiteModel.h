@@ -7,7 +7,7 @@
 //
 
 #import <AppKit/AppKit.h>
-#import "SYProxy.h"
+@import SYProxy;
 
 @interface SYWebsiteModel : NSObject <NSCoding>
 

@@ -12,10 +12,11 @@
 #import "SYSettingsViewController.h"
 #import "SYCrawler.h"
 #import "SYColorView.h"
+@import SYProxy;
 
 typedef void(^SYMenuTapBlock)(void);
 
-@interface SYAppDelegate () <SYProxyURLProtocolDataSource, NSMenuDelegate>
+@interface SYAppDelegate () </* TODO: ProxyURLProtocolDataSource, */NSMenuDelegate>
 
 @property (strong, nonatomic) IBOutlet NSMenu *statusMenu;
 @property (strong, nonatomic) NSStatusItem *statusItem;
@@ -49,7 +50,7 @@ typedef void(^SYMenuTapBlock)(void);
         [self updateIcon];
     }];
     
-    [SYProxyURLProtocol setDataSource:self];
+    // TODO: [ProxyURLProtocol setDataSource:self];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
@@ -235,7 +236,7 @@ typedef void(^SYMenuTapBlock)(void);
 
 - (SYProxyModel *)firstProxyMatchingURL:(NSURL *)url
 {
-    return [SYProxyModel firstProxyInProxies:[[SYStorage shared] proxies] matchingURL:url];
+    return nil; // TODO: return [SYProxyModel firstProxyInProxies:[[SYStorage shared] proxies] matchingURL:url];
 }
 
 @end

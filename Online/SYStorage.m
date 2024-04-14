@@ -30,7 +30,7 @@
     if (self)
     {
         NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"websites"];
-        NSArray *savedItems = data ? [NSKeyedUnarchiver unarchiveObjectWithData:data] : @[];
+        NSArray *savedItems = data ? [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithArray:@[NSArray.class, SYProxyModel.class]] fromData:data error:nil] : @[];
         self.set = [[NSMutableOrderedSet alloc] initWithArray:savedItems];
     }
     return self;
@@ -129,11 +129,14 @@
 
 - (NSArray<SYProxyModel *> *)proxies
 {
+    return @[];
+    /*
     NSMutableArray *proxies = [NSMutableArray array];
     for (SYWebsiteModel *website in self.set)
         if (website.proxy.host.length && website.proxy.port)
             [proxies addObject:website.proxy];
     return [proxies copy];
+     */
 }
 
 - (SYWebsiteModel *)websiteForId:(NSString *)identifier

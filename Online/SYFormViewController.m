@@ -63,10 +63,12 @@
 {
     [self.fieldName setStringValue:(self.website.name ?: @"")];
     [self.fieldURL  setStringValue:(self.website.url  ?: @"")];
+    /*
     [self.fieldProxyHost    setStringValue:(self.website.proxy.host ?: @"")];
     [self.fieldProxyPort    setIntValue:self.website.proxy.port];
     [self.fieldProxyUser    setStringValue:(self.website.proxy.username ?: @"")];
     [self.fieldProxyPass    setStringValue:(self.website.proxy.password ?: @"")];
+     */
     [self.fieldTimeout                  setDoubleValue:self.website.timeout];
     [self.fieldTimeBeforeRetryIfSuccess setDoubleValue:self.website.timeBeforeRetryIfSuccessed];
     [self.fieldTimeBeforeRetryIfFailed  setDoubleValue:self.website.timeBeforeRetryIfFailed];
@@ -120,16 +122,18 @@
     if (!website)
     {
         website = [[SYWebsiteModel alloc] init];
-        website.proxy = [[SYProxyModel alloc] init];
+        //website.proxy = [[SYProxyModel alloc] init];
     }
 
     website.name = self.fieldName.stringValue;
     website.url  = self.fieldURL.stringValue;
+    /*
     website.proxy.host              = self.fieldProxyHost.stringValue;
     website.proxy.port              = self.fieldProxyPort.intValue;
     website.proxy.username          = self.fieldProxyUser.stringValue;
     website.proxy.password          = self.fieldProxyPass.stringValue;
     website.proxy.urlWildcardRules  = @[website.url];
+     */
     website.timeout                     = self.fieldTimeout.doubleValue;
     website.timeBeforeRetryIfSuccessed  = self.fieldTimeBeforeRetryIfSuccess.doubleValue;
     website.timeBeforeRetryIfFailed     = self.fieldTimeBeforeRetryIfFailed.doubleValue;
